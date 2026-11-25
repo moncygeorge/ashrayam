@@ -1,0 +1,13 @@
+[Unit]
+Description=Ashrayam website
+After=network.target
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/ashrayam
+EnvironmentFile=/etc/ashrayam.env
+ExecStart=/home/ubuntu/ashrayam/.venv/bin/gunicorn --workers 2 --bind 127.0.0.1:8010 app:app
+Restart=on-failure
+NoNewPrivileges=true
+PrivateTmp=true
+[Install]
+WantedBy=multi-user.target
